@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../models/lead_model.dart';
 import '../../services/lead_service.dart';
 import 'package:image_picker/image_picker.dart';
@@ -64,10 +65,40 @@ class _PutLeadPopupState extends State<PutLeadPopup> {
     }
   }
 
+  InputDecoration _inputDecoration(String label) {
+    return InputDecoration(
+      labelText: label,
+      labelStyle: GoogleFonts.dynaPuff(
+        color: Colors.white,
+        fontSize: 16,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: Colors.white),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: Colors.white),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      border: OutlineInputBorder(
+        borderSide: const BorderSide(color: Colors.white),
+        borderRadius: BorderRadius.circular(8),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Editar Lead'),
+      backgroundColor: const Color(0xFFF5532A),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      title: Text(
+        'Editar Lead',
+        style: GoogleFonts.dynaPuff(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
       content: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -76,32 +107,51 @@ class _PutLeadPopupState extends State<PutLeadPopup> {
             children: [
               TextFormField(
                 controller: _nameController,
-                decoration: const InputDecoration(labelText: 'Nome'),
+                decoration: _inputDecoration('Nome'),
+                style: GoogleFonts.dynaPuff(color: Colors.white),
                 validator: (v) =>
                     v == null || v.isEmpty ? 'Informe o nome' : null,
               ),
+              const SizedBox(height: 8),
               TextFormField(
                 controller: _emailController,
-                decoration: const InputDecoration(labelText: 'E-mail'),
+                decoration: _inputDecoration('E-mail'),
+                style: GoogleFonts.dynaPuff(color: Colors.white),
                 validator: (v) {
                   if (v == null || v.isEmpty) return 'Informe o e-mail';
                   if (!v.contains('@')) return 'E-mail inválido';
                   return null;
                 },
               ),
+              const SizedBox(height: 8),
               TextFormField(
                 controller: _phoneController,
-                decoration: const InputDecoration(labelText: 'Telefone'),
+                decoration: _inputDecoration('Telefone'),
+                style: GoogleFonts.dynaPuff(color: Colors.white),
                 validator: (v) =>
                     v == null || v.isEmpty ? 'Informe o telefone' : null,
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 12),
               Row(
                 children: [
                   ElevatedButton.icon(
-                    onPressed: _pickImage,
-                    icon: const Icon(Icons.image),
-                    label: const Text('Imagem'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: const Color(0xFFF5532A),
+                      textStyle: GoogleFonts.dynaPuff(
+                        color: const Color(0xFFF5532A),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onPressed: _loading ? null : _pickImage,
+                    icon: const Icon(Icons.image, color: Color(0xFFF5532A)),
+                    label: Text(
+                      'Imagem',
+                      style: GoogleFonts.dynaPuff(
+                        color: const Color(0xFFF5532A),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                   const SizedBox(width: 12),
                   if (_image != null)
@@ -126,9 +176,23 @@ class _PutLeadPopupState extends State<PutLeadPopup> {
       actions: [
         TextButton(
           onPressed: _loading ? null : () => Navigator.of(context).pop(),
-          child: const Text('Cancelar'),
+          child: Text(
+            'Cancelar',
+            style: GoogleFonts.dynaPuff(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.white,
+            foregroundColor: const Color(0xFFF5532A),
+            textStyle: GoogleFonts.dynaPuff(
+              color: const Color(0xFFF5532A),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           onPressed: _loading ? null : _submit,
           child: _loading
               ? const SizedBox(
@@ -136,7 +200,13 @@ class _PutLeadPopupState extends State<PutLeadPopup> {
                   height: 20,
                   child: CircularProgressIndicator(strokeWidth: 2),
                 )
-              : const Text('Salvar'),
+              : Text(
+                  'Salvar',
+                  style: GoogleFonts.dynaPuff(
+                    color: const Color(0xFFF5532A),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
         ),
       ],
     );

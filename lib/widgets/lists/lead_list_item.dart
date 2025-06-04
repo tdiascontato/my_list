@@ -23,16 +23,30 @@ class LeadListItem extends StatelessWidget {
     final confirm = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        title: const Text('Excluir Lead'),
-        content: const Text('Tem certeza que deseja excluir este lead?'),
+        backgroundColor: const Color(0xFFF5532A),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: Text(
+          'Excluir Lead',
+          style: GoogleFonts.dynaPuff(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        content: Text(
+          'Tem certeza que deseja excluir este lead?',
+          style: GoogleFonts.dynaPuff(color: Colors.white),
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancelar'),
+            child: Text(
+              'Cancelar',
+              style: GoogleFonts.dynaPuff(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Excluir', style: TextStyle(color: Colors.red)),
+            child: Text(
+              'Excluir',
+              style: GoogleFonts.dynaPuff(color: const Color.fromARGB(255, 244, 200, 54), fontWeight: FontWeight.bold),
+            ),
           ),
         ],
       ),
