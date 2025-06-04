@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:my_list/models/lead_model.dart';
-import 'package:my_list/widgets/lead_form.dart';
+import 'package:my_list/widgets/forms/lead_form.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import '../services/api_service.dart';
 import '../services/lead_service.dart';
 import '../models/user_model.dart';
-import '../widgets/user_list_item.dart';
-import '../widgets/lead_list_item.dart';
+import '../widgets/lists/user_list_item.dart';
+import '../widgets/lists/lead_list_item.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

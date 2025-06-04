@@ -2,9 +2,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import '../models/lead_model.dart';
-import '../providers/lead_provider.dart';
-import 'popups/sucess.dart';
+import '../../models/lead_model.dart';
+import '../../providers/lead_provider.dart';
+import '../popups/sucess.dart';
 
 class LeadForm extends StatefulWidget {
   final VoidCallback? onLeadSubmitted;

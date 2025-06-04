@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../models/lead_model.dart';
-import '../services/lead_service.dart';
-import 'popups/put_lead.dart';
+import '../../models/lead_model.dart';
+import '../../services/lead_service.dart';
+import '../popups/put_lead.dart';
 
 class LeadListItem extends StatelessWidget {
   final LeadModel lead;
