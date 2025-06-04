@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import '../../models/lead_model.dart';
@@ -78,11 +79,34 @@ class _LeadFormState extends State<LeadForm> {
     }
   }
 
+  InputDecoration _inputDecoration(String label) {
+    return InputDecoration(
+      labelText: label,
+      labelStyle: GoogleFonts.dynaPuff(
+        color: Colors.white,
+        fontSize: 16,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: Colors.white),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: Colors.orange),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      border: OutlineInputBorder(
+        borderSide: const BorderSide(color: Colors.white),
+        borderRadius: BorderRadius.circular(8),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<LeadProvider>(context);
 
     return Card(
+      color: const Color.fromARGB(255, 211, 74, 0),
       elevation: 3,
       margin: const EdgeInsets.only(bottom: 16),
       child: Padding(
@@ -92,14 +116,19 @@ class _LeadFormState extends State<LeadForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text(
+              Text(
                 'Cadastrar Lead',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                style: GoogleFonts.dynaPuff(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _nameController,
-                decoration: const InputDecoration(labelText: 'Nome'),
+                decoration: _inputDecoration('Nome'),
+                style: GoogleFonts.dynaPuff(color: Colors.white),
                 onSaved: (v) => _nameController.text = v!.trim(),
                 validator: (v) =>
                     v == null || v.isEmpty ? 'Informe o nome' : null,
@@ -107,7 +136,8 @@ class _LeadFormState extends State<LeadForm> {
               const SizedBox(height: 8),
               TextFormField(
                 controller: _emailController,
-                decoration: const InputDecoration(labelText: 'E-mail'),
+                decoration: _inputDecoration('E-mail'),
+                style: GoogleFonts.dynaPuff(color: Colors.white),
                 keyboardType: TextInputType.emailAddress,
                 onSaved: (v) => _emailController.text = v!.trim(),
                 validator: (v) {
@@ -119,7 +149,8 @@ class _LeadFormState extends State<LeadForm> {
               const SizedBox(height: 8),
               TextFormField(
                 controller: _phoneController,
-                decoration: const InputDecoration(labelText: 'Telefone'),
+                decoration: _inputDecoration('Telefone'),
+                style: GoogleFonts.dynaPuff(color: Colors.white),
                 keyboardType: TextInputType.phone,
                 onSaved: (v) => _phoneController.text = v!.trim(),
                 validator: (v) =>
@@ -129,9 +160,23 @@ class _LeadFormState extends State<LeadForm> {
               Row(
                 children: [
                   ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.orange,
+                      textStyle: GoogleFonts.dynaPuff(
+                        color: Colors.orange,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     onPressed: provider.isSubmitting ? null : _pickImage,
-                    icon: const Icon(Icons.image),
-                    label: const Text('Selecionar Imagem'),
+                    icon: const Icon(Icons.image, color: Colors.orange),
+                    label: Text(
+                      'Selecionar Imagem',
+                      style: GoogleFonts.dynaPuff(
+                        color: const Color.fromARGB(255, 255, 115, 0),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                   const SizedBox(width: 12),
                   if (_image != null)
@@ -147,7 +192,7 @@ class _LeadFormState extends State<LeadForm> {
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Text(
                     _localErrorMessage!,
-                    style: const TextStyle(color: Colors.red),
+                    style: GoogleFonts.dynaPuff(color: Colors.red),
                   ),
                 ),
               if (provider.errorMessage != null)
@@ -155,11 +200,19 @@ class _LeadFormState extends State<LeadForm> {
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Text(
                     provider.errorMessage!,
-                    style: const TextStyle(color: Colors.red),
+                    style: GoogleFonts.dynaPuff(color: Colors.red),
                   ),
                 ),
               const SizedBox(height: 12),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.orange,
+                  textStyle: GoogleFonts.dynaPuff(
+                    color: Colors.orange,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 onPressed: provider.isSubmitting ? null : _submit,
                 child: provider.isSubmitting
                     ? const SizedBox(
@@ -167,7 +220,13 @@ class _LeadFormState extends State<LeadForm> {
                         height: 20,
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
-                    : const Text('Enviar Lead'),
+                    : Text(
+                        'Enviar Lead',
+                        style: GoogleFonts.dynaPuff(
+                          color: const Color.fromARGB(255, 255, 115, 0),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
               ),
             ],
           ),

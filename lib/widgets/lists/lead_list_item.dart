@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../models/lead_model.dart';
 import '../../services/lead_service.dart';
 import '../popups/put_lead.dart';
@@ -45,17 +46,23 @@ class LeadListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 6),
+      margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      color: Colors.white,
       child: ListTile(
         leading: lead.imageUrl != null
             ? CircleAvatar(backgroundImage: NetworkImage(lead.imageUrl!))
             : const CircleAvatar(child: Icon(Icons.person)),
-        title: Text(lead.name),
+        title: Text(
+          lead.name,
+          style: GoogleFonts.dynaPuff(color: const Color.fromARGB(255, 255, 115, 0) ,fontWeight: FontWeight.bold),
+        ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(lead.email),
-            Text(lead.phone),
+            Text(lead.email, style: GoogleFonts.dynaPuff(color: const Color.fromARGB(255, 255, 115, 0) ,)),
+            Text(lead.phone, style: GoogleFonts.dynaPuff(color: const Color.fromARGB(255, 255, 115, 0) ,)),
           ],
         ),
         trailing: Row(
